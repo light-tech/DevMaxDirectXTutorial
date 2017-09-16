@@ -1,0 +1,30 @@
+{
+"version":1,
+"name":"DirectX Sample",
+"build_definitions": [
+	{
+		"name":"Compile tutorial 1",
+		"build_steps": [
+			{
+				"action":"compile",
+				"args":["-mrelax-all", "-fms-extensions", "-fms-compatibility", "-fms-compatibility-version=19.10.25017","-std=c++14", "-fdelayed-template-parsing","-fcxx-exceptions","-fexceptions","-x","c++","-D","UNICODE"],
+				"sys_include_dir":["msvc", "ucrt", "um", "shared"],
+				"inputs":["Tutorial01.cpp"],
+				"outputdir":"bin"
+			}
+		]
+	},
+	{
+		"name":"Link tutorial 1",
+		"build_steps": [
+			{
+				"action":"link",
+				"args":["/defaultlib:msvcrt.lib", "/subsystem:Windows", "User32.lib", "Gdi32.lib", "d3d11.lib"],
+				"inputs":["Tutorial01.o"],
+				"output":"Tutorial01.exe",
+				"comment":"Need libcpmt.lib in VC"
+			}
+		]
+	}
+]
+}

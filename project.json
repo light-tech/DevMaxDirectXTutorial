@@ -19,7 +19,7 @@
 		"build_steps": [
 			{
 				"action":"link",
-				"args":["/defaultlib:msvcrt.lib", "/subsystem:Windows", "User32.lib", "Gdi32.lib", "d3d11.lib"],
+				"args":["/defaultlib:msvcrt.lib", "/subsystem:Windows", "User32.lib", "Gdi32.lib", "d3d11.lib", "d3dcompiler.lib"],
 				"inputs":["Tutorial01.o"],
 				"output":"Tutorial01.exe",
 				"comment":"Need libcpmt.lib in VC"

@@ -1,26 +1,43 @@
 {
 "version":1,
 "name":"DirectX Sample",
+"build_commands" : {
+	"C++" : {
+		"action":"compile",
+		"args":["-mrelax-all", "-fms-volatile", "-fno-builtin", "-fms-extensions", "-fms-compatibility", "-fms-compatibility-version=19.10.25017","-std=c++14", "-fdelayed-template-parsing","-fcxx-exceptions","-fexceptions","-x","c++","-D","UNICODE","-D","_XM_NO_INTRINSICS_"],
+		"sys_include_dir":["msvc", "ucrt", "um", "shared"]
+	},
+	"LinkExe" : {
+		"action":"link",
+		"args":["/defaultlib:msvcrt.lib", "/subsystem:Windows", "User32.lib", "Gdi32.lib", "d3d11.lib", "d3dcompiler.lib", "dxguid.lib"]
+	}
+},
 "build_definitions": [
 	{
-		"name":"Compile tutorial 1",
+		"name":"Build tutorial 1",
 		"build_steps": [
 			{
-				"action":"compile",
-				"args":["-mrelax-all", "-fms-volatile", "-fno-builtin", "-fms-extensions", "-fms-compatibility", "-fms-compatibility-version=19.10.25017","-std=c++14", "-fdelayed-template-parsing","-fcxx-exceptions","-fexceptions","-x","c++","-D","UNICODE","-D","_XM_NO_INTRINSICS_"],
-				"sys_include_dir":["msvc", "ucrt", "um", "shared"],
-				"inputs":["Tutorial07.cpp", "DDSTextureLoader.cpp"],
+				"command":"C++",
+				"inputs":["Tutorial01.cpp"]
+			},
+			{
+				"command":"LinkExe",
+				"inputs":["Tutorial01.o"],
+				"output":"Tutorial01.exe"
 			}
 		]
 	},
 	{
-		"name":"Link tutorial 7",
+		"name":"Build tutorial 7",
 		"build_steps": [
 			{
-				"action":"link",
-				"args":["/defaultlib:msvcrt.lib", "/subsystem:Windows", "User32.lib", "Gdi32.lib", "d3d11.lib", "d3dcompiler.lib", "dxguid.lib"],
-				"inputs":["DDSTextureLoader.o","Tutorial07.o"],
-				"output":"Tutorial07.exe",
+				"command":"C++",
+				"inputs":["Tutorial07.cpp", "DDSTextureLoader.cpp"]
+			},
+			{
+				"command":"LinkExe",
+				"inputs":["Tutorial07.o", "DDSTextureLoader.o"],
+				"output":"Tutorial07.exe"
 			}
 		]
 	}
